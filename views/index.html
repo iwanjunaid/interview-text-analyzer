@@ -1,0 +1,42 @@
+{% extends '_layout.html' %}
+{% block content %}
+  <form action="/" method="POST">
+    <div>
+      <input type="text" name="input" value="{{input}}" size="50" maxlength="255" />
+    </div>
+
+    {% if error %}
+      <div>
+        {{error}}
+      </div>
+    {% endif %}
+
+    <div>
+      <button type="submit">Analyze</button>
+    </div>
+  </form>
+
+  {% if result %}
+    <h3>Result</h3>
+    <table>
+      <tr>
+        <th>Character</th>
+        <th>Occurences</th>
+        <th>Before</th>
+        <th>After</th>
+        <th>Max Distance</th>
+      </tr>
+
+      {% for r in result %}
+        <tr>
+          <td>{{r.vertex}}</td>
+          <td>{{r.occurences}}</td>
+          <td>{{r.before}}</td>
+          <td>{{r.after}}</td>
+          <td>{{r.maxDistance}}</td>
+        </tr>
+      {% endfor %}
+
+    </table>
+  {% endif %}
+{% endblock %}
